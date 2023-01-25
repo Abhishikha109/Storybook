@@ -1,9 +1,9 @@
-import {addDecorator} from "@storybook/react";
-import Center from "../src/components/Center/Center";
-import {ChakraProvider, extendTheme} from '@chakra-ui/react'
+import Center from '../src/components/Center/Center';
+import {ChakraProvider, extendTheme} from '@chakra-ui/react';
+import {addDecorator} from '@storybook/react';
 import {withConsole} from '@storybook/addon-console'; // to get all the console log in storybook UI in action tab
 import {withKnobs} from '@storybook/addon-knobs';
-import {withA11y} from "@storybook/addon-a11y";
+import {withA11y} from '@storybook/addon-a11y';
 
 export const parameters = {
     actions: {argTypesRegex: "^on[A-Z].*"},
@@ -19,6 +19,8 @@ export const parameters = {
     },
 }
 
+// for chakra UI to work we have set the theme
+
 const theme = extendTheme({
     colors: {
         brand: {
@@ -32,17 +34,15 @@ const theme = extendTheme({
 addDecorator(story => <Center>
     {story()}
 </Center>);
-
-addDecorator((storyFn, context) => 
+addDecorator((storyFn, context) =>
     withConsole()(storyFn)(context));
-
 addDecorator(withKnobs);
 addDecorator(withA11y);
 
 export const decorators = [
     (Story) => (
         <ChakraProvider theme={theme}>
-            <Story />
+            <Story/>
         </ChakraProvider>
     )
 ];
